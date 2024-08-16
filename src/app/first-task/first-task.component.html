@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse justify-content-center">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="switchView('firstTask')">First Task</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="switchView('anotherTask')">Sec Task</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    @if(currentView === 'firstTask')
+    {
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">&#64;</span>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+            aria-describedby="basic-addon1" [(ngModel)]="userName">
+    </div>
+    <p>{{ userName }}</p>
+    <button [disabled]="!userName" type="button" class="btn btn-primary" (click)="userName=''">Reset</button>
+    }@else {
+    <button type="button" class="btn btn-primary" (click)="onDisplayDetails()">Display Details</button>
+    <p *ngIf="displayDetails">Secret password = Tuna.</p>
+    @for(time of timeOfClicks; let i =$index; track time;){
+    <p [ngStyle]="i>5?style:{}" [ngClass]="i > 5 ? 'white-text' : ''">{{time}}</p>
+    }
+    }
+</div>
